@@ -1,11 +1,14 @@
 ﻿using FormulaOneApp.Data;
 using FormulaOneApp.Models;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Runtime.InteropServices;
 
 namespace FormulaOneApp.Controllers
 {
+    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
     [Route("api/[controller]")]
     [ApiController]
     public class TeamsController : ControllerBase
@@ -36,7 +39,7 @@ namespace FormulaOneApp.Controllers
         //};
 
 
-        private static AppDbContext _context;
+        private static AppDbContext? _context;
 
         public TeamsController(AppDbContext context)
         {
